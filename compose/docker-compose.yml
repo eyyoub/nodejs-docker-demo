@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  backend:
+    image: nodejs-backend
+    container_name: nodejs-api
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  frontend:
+    image: nginx-frontend
+    container_name: nginx-web
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
