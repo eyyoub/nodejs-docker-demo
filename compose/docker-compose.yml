@@ -2,6 +2,9 @@ version: '3'
 
 services:
   backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
     image: nodejs-backend
     container_name: nodejs-api
     ports:
@@ -12,6 +15,9 @@ services:
 
   frontend:
     image: nginx-frontend
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
     container_name: nginx-web
     ports:
       - "80:80"
